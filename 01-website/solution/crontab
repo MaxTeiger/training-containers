@@ -1,0 +1,5 @@
+# All tasks should append all their output to /var/log/cron.log. Anything
+# written to that log file will be streamed to the container's standard output.
+
+# Studies show that users get bored of seeing the same image all the time.
+* * * * * /docker-entrypoint.d/40-download-image.sh >> /var/log/cron.log 2>&1

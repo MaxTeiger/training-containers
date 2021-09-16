@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Padok Web Services</title>
+    <link
+      rel="shortcut icon"
+      href="https://www.padok.fr/hubfs/padok-favicon.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Padok Web Services</h1>
+    <h2>The future is finally here.</h2>
+    <img src="image.png" />
+    <p>source: <a href="https://xkcd.com/">xkcd</a></p>
+    {{- if eq .DEBUG "true" }}
+    <h3>Debug information</h3>
+    <p>Server hostname: {{ .HOSTNAME }}</p>
+    <p>NGINX version: {{ .NGINX_VERSION }}</p>
+    {{- end }}
+  </body>
+</html>
