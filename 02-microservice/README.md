@@ -206,6 +206,8 @@ docker build -t microservice .
 docker run -p 8080:8080 microservice
 ```
 
+</details>
+
 ## Cleanup
 
 Once you are done with this exercise, be sure to delete the containers you
