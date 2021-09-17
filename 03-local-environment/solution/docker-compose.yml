@@ -1,0 +1,59 @@
+version: "3.9"
+services:
+  reverse-proxy:
+    image: jwilder/nginx-proxy:0.9-alpine
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  producer:
+    build:
+      context: ./producer
+      target: development
+    environment:
+      - VIRTUAL_HOST=api.vcap.me # for reverse proxy
+      - VIRTUAL_PORT=8080 # for reverse proxy
+    volumes:
+      - ./producer:/app
+  consumer:
+    build:
+      context: ./consumer
+      target: development
+    volumes:
+      - ./consumer:/app
+  redis:
+    image: redis:6.2
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.27.0
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+      - REDIS_EXPORTER_CHECK_SINGLE_KEYS=padok
+  prometheus:
+    image: prom/prometheus:v2.30.0
+    environment:
+      - VIRTUAL_HOST=prometheus.vcap.me # for reverse proxy
+      - VIRTUAL_PORT=9090 # for reverse proxy
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus-data:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+  grafana:
+    image: grafana/grafana:8.1.4
+    environment:
+      - VIRTUAL_HOST=grafana.vcap.me # for reverse proxy
+      - VIRTUAL_PORT=3000 # for reverse proxy
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+volumes:
+  grafana-data: {}
+  prometheus-data: {}
+  redis-data: {}

@@ -1,0 +1,5 @@
+providers:
+  - name: Pre-loaded local dashboards
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards
