@@ -24,6 +24,8 @@ Here is what you need to do:
 
 > Don't worry about multi-stage builds for now.
 
+Ready? Set. Go!
+
 <details>
     <summary><em>
     Compare your work to the solution before moving on. Are there differences? Is your approach better or worse? Why?
@@ -71,6 +73,8 @@ need to do:
 > This step is considered to be Level 2 in difficulty. You can skip it if you
 > feel this is too difficult.
 
+You can do it!
+
 <details>
     <summary><em>
     Compare your work to the solution before moving on. Are there differences? Is your approach better or worse? Why?
@@ -99,6 +103,8 @@ do:
 5. In the second stage, run the microservice.
 6. Build your container image again.
 7. Check to see how big the image is now.
+
+What are you waiting for?
 
 <details>
     <summary><em>
@@ -149,6 +155,8 @@ Here is what you need to do:
    expected.
 8. Build the container image without specifying a target. Make sure this builds
    a production image, not a development one.
+
+Get to it!
 
 <details>
     <summary><em>
