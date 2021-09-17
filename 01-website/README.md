@@ -81,6 +81,14 @@ Here is what you need to do:
 You can do it!
 
 <details>
+    <summary>Best practice n°1</summary>
+
+When installing packages with a package manager, make sure its cache is deleted
+in the same `RUN` instruction.
+
+</details>
+
+<details>
     <summary><em>
     Compare your work to the solution before moving on. Are there differences? Is your approach better or worse? Why?
     </em></summary>
