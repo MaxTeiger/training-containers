@@ -1,0 +1,10 @@
+FROM nginx:1.21.3-alpine
+
+RUN apk add --no-cache jq
+
+COPY static /usr/share/nginx/html/
+
+COPY download-image.sh /docker-entrypoint.d/
+
+COPY start-crond.sh /docker-entrypoint.d/
+COPY crontab /etc/crontabs/root

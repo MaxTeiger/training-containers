@@ -1,0 +1,14 @@
+FROM nginx:1.21.3-alpine
+
+RUN apk add --no-cache jq
+
+COPY --from=julienbreux/clamp:v1.4.0 /bin/clamp /usr/local/bin
+
+COPY static /usr/share/nginx/html/
+
+COPY download-image.sh /docker-entrypoint.d/
+
+COPY start-crond.sh /docker-entrypoint.d/
+COPY crontab /etc/crontabs/root
+
+COPY render-templates.sh /docker-entrypoint.d/

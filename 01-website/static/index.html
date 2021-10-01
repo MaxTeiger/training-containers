@@ -15,8 +15,10 @@
     <h2>The future is finally here.</h2>
     <img src="image.png" />
     <p>source: <a href="https://xkcd.com/">xkcd</a></p>
+    {{- if eq .DEBUG "true" }}
     <h3>Debug information</h3>
-    <p>Server hostname: unknown</p>
-    <p>NGINX version: unknown</p>
+    <p>Server hostname: {{ .HOSTNAME }}</p>
+    <p>NGINX version: {{ .NGINX_VERSION }}</p>
+    {{- end }}
   </body>
 </html>
